@@ -31,6 +31,24 @@ if (!function_exists('master_auth')) {
                     $role = $row->role;
 
                     if ($pass == md5($password)) {
+                        //define role 
+                        $authoriz = $CI->db->query("SELECT name, access
+                                                            FROM authorization
+                                                            WHERE role = $role")->row_array();
+
+                        switch ($$authoriz) {
+                            case '1':
+                                $auth = 'Admin';
+                                break;
+
+                            case '2':
+                                $auth = 'User';
+                            
+                            default:
+                                $auth = 'User';
+                                break;
+                        }
+
                         //set session
                         $sess['user'] = $user;
                         $sess['is_active'] = true;

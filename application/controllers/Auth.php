@@ -20,7 +20,7 @@ class Auth extends CI_Controller {
 
         $result = master_auth($param, 'master', 'master');
 
-        print_r($result);
+        echo $result;
     }
 }
 ?>
